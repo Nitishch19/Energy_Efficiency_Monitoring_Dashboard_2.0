@@ -20,7 +20,6 @@ from datetime import datetime, timedelta
 # =============================================================================
 st.set_page_config(
     page_title="Energy Efficiency Monitoring Dashboard",
-    page_icon="⚡",
     layout="wide",  # Use full width of browser
     initial_sidebar_state="expanded"  # Sidebar open by default
 )
@@ -78,7 +77,7 @@ st.markdown("""
 # =============================================================================
 # CURRENCY SELECTION FEATURE (NEW)
 # =============================================================================
-st.sidebar.markdown("### 💰 Currency Settings")
+st.sidebar.markdown("Currency Settings")
 
 # Let user choose between USD and INR
 currency = st.sidebar.selectbox(
@@ -116,7 +115,7 @@ def fmt_money(amount):
 # =============================================================================
 # EXCEL FILE UPLOAD FEATURE (NEW)
 # =============================================================================
-st.sidebar.markdown("### 📁 Data Upload")
+st.sidebar.markdown("Data Upload")
 st.sidebar.markdown("Upload your own Excel file or use sample data")
 
 # File uploader widget - accepts .xlsx and .xls files
