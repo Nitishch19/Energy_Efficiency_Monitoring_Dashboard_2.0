@@ -456,7 +456,7 @@ if not df.empty:
             latest_data = room_data.iloc[-1]  # Get most recent record
             
             # Room overview section
-            st.markdown(f"### 🏠 {selected_room} Analysis - {selected_building}, {selected_floor}")
+            st.markdown(f"{selected_room} Analysis - {selected_building}, {selected_floor}")
             
             # Display key metrics for this room
             col1, col2, col3, col4 = st.columns(4)
@@ -474,7 +474,7 @@ if not df.empty:
                 st.metric("Efficiency", f"{latest_data['efficiency_percent']:.1f}%")
             
             # Trends and analysis
-            st.markdown("### 📈 Trends")
+            st.markdown("Trends")
             col1, col2 = st.columns(2)
             
             with col1:
@@ -512,7 +512,7 @@ if not df.empty:
             st.plotly_chart(fig3, use_container_width=True)
             
             # Energy analysis
-            st.markdown("### 📊 Detailed Analysis")
+            st.markdown("Detailed Analysis")
             
             avg_daily = room_data['energy_kwh'].mean()
             max_daily = room_data['energy_kwh'].max()
@@ -544,7 +544,7 @@ if not df.empty:
                 """, unsafe_allow_html=True)
             
             # Data table
-            st.markdown("### 📋 Historical Data")
+            st.markdown("Historical Data")
             st.dataframe(
                 room_data[['date', 'energy_kwh', 'cost_local', 'carbon_kg', 'efficiency_percent']].rename(
                     columns={'cost_local': f'Cost ({currency})'}
@@ -574,7 +574,7 @@ if not df.empty:
         building_summary['Cost Local'] = building_summary['Total Cost'].apply(convert_currency)
         
         # Performance ranking
-        st.markdown("### 🏆 Building Performance Ranking")
+        st.markdown("Building Performance Ranking")
         
         # Calculate overall performance score
         building_summary['Performance Score'] = (
@@ -616,7 +616,7 @@ if not df.empty:
             st.plotly_chart(fig2, use_container_width=True)
         
         # Floor-wise comparison
-        st.markdown("### 🏢 Floor-wise Energy Distribution")
+        st.markdown("Floor-wise Energy Distribution")
         
         floor_data = df.groupby(['building', 'floor'])['energy_kwh'].sum().reset_index()
         
@@ -648,7 +648,7 @@ if not df.empty:
         col1, col2 = st.columns(2)
         
         with col1:
-            st.markdown("### 🔮 Future Consumption Prediction")
+            st.markdown("Future Consumption Prediction")
             
             pred_building = st.selectbox("Building", df['building'].unique(), key="pred_building")
             pred_floor = st.selectbox("Floor", df['floor'].unique(), key="pred_floor")
@@ -723,7 +723,7 @@ if not df.empty:
                     st.metric("Predicted Carbon", f"{total_pred_carbon:.1f} kg CO₂")
         
         with col2:
-            st.markdown("### 📊 Historical vs Predicted Trends")
+            st.markdown("Historical vs Predicted Trends")
             
             # Show recent trend
             recent_data = df.groupby('date')['energy_kwh'].sum().reset_index().tail(10)
@@ -738,7 +738,7 @@ if not df.empty:
             st.plotly_chart(fig, use_container_width=True)
             
             # Energy saving scenarios with currency
-            st.markdown("### 💰 Potential Savings Scenarios")
+            st.markdown("Potential Savings Scenarios")
             
             scenarios = pd.DataFrame({
                 'Scenario': ['Current', '5% Improvement', '10% Improvement', '15% Improvement'],
@@ -846,7 +846,7 @@ if not df.empty:
                     st.markdown(f"- {action}")
         
         # Cost-benefit analysis with currency conversion
-        st.markdown("### 💰 Investment Payback Analysis")
+        st.markdown("Investment Payback Analysis")
         
         investments = pd.DataFrame({
             'Improvement': ['LED Upgrade', 'Smart Thermostats', 'Insulation', 'Solar Panels', 'Energy Management System'],
